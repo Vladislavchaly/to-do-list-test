@@ -10,9 +10,9 @@ use Illuminate\Http\JsonResponse;
 class LoginController extends Controller
 {
     /**
-     * @api {post} /api/auth/login User Login
+     * @api {post} /api/auth/login Login User
      * @apiName UserLogin
-     * @apiGroup User
+     * @apiGroup Authentication
      * @apiDescription This endpoint logs in the user and returns a token for API authentication.
      *
      * @apiParam {String} email User email.
@@ -22,7 +22,6 @@ class LoginController extends Controller
      *
      * @apiError (422) {String} error Returns if authentication fails (invalid email or password).
      */
-
     public function __invoke(LoginRequest $request, UserRepository $userRepository): JsonResponse
     {
         if (auth()->attempt($request->all())) {

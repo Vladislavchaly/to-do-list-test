@@ -1,40 +1,186 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+<h1>API Documentation</h1>
 
-## About Laravel
+<p>You can use <a href="http://localhost:8000/apidoc/index.html">ApiDoc</a> for documentation or the HTTP Client in PhpStorm for testing.</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+<h2>Authentication</h2>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<h3>Login User</h3>
+<p><strong>POST</strong> <code>http://localhost:8000/api/auth/login</code></p>
+<p><strong>Headers:</strong></p>
+<pre>
+Accept: application/json
+Content-Type: application/json
+</pre>
+<p><strong>Body:</strong></p>
+<pre>
+{
+  "email": "test@gmail.com",
+  "password": "1Qwerty@"
+}
+</pre>
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+<hr>
 
-## Learning Laravel
+<h3>Logout User</h3>
+<p><strong>DELETE</strong> <code>http://localhost:8000/api/auth/logout</code></p>
+<p><strong>Headers:</strong></p>
+<pre>
+Accept: application/json
+Authorization: Bearer &lt;your token&gt;
+</pre>
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+<hr>
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+<h3>Register New User</h3>
+<p><strong>POST</strong> <code>http://localhost:8000/api/auth/register</code></p>
+<p><strong>Headers:</strong></p>
+<pre>
+Accept: application/json
+Content-Type: application/json
+</pre>
+<p><strong>Body:</strong></p>
+<pre>
+{
+  "email": "test@gmail.com",
+  "password": "Test1234",
+  "password_confirmation": "Test1234",
+  "name": "Test User Name"
+}
+</pre>
 
-## Contributing
+<hr>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+<h2>Tasks</h2>
 
-## Security Vulnerabilities
+<h3>Create New Task</h3>
+<p><strong>POST</strong> <code>http://localhost:8000/api/task</code></p>
+<p><strong>Headers:</strong></p>
+<pre>
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer &lt;your token&gt;
+</pre>
+<p><strong>Body:</strong></p>
+<pre>
+{
+  "name": "Test Title",
+  "description": "Test Description"
+}
+</pre>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+<hr>
 
-## License
+<h3>Get List of Tasks</h3>
+<p><strong>GET</strong> <code>http://localhost:8000/api/task</code></p>
+<p><strong>Headers:</strong></p>
+<pre>
+Accept: application/json
+Authorization: Bearer &lt;your token&gt;
+</pre>
+<p><strong>Optional Query Parameters:</strong></p>
+<ul>
+    <li><code>status</code>: true|false</li>
+    <li><code>title</code>: "Task Title"</li>
+    <li><code>sort_by</code>: "created_at"|"due_date"|"priority"</li>
+    <li><code>page</code>: 1</li>
+    <li><code>limit</code>: 10</li>
+</ul>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+<hr>
+
+<h3>Get Task by ID</h3>
+<p><strong>GET</strong> <code>http://localhost:8000/api/task/{id}</code></p>
+<p><strong>Headers:</strong></p>
+<pre>
+Accept: application/json
+Authorization: Bearer &lt;your token&gt;
+</pre>
+
+<hr>
+
+<h3>Update a Task by ID</h3>
+<p><strong>PUT</strong> <code>http://localhost:8000/api/task/{id}</code></p>
+<p><strong>Headers:</strong></p>
+<pre>
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer &lt;your token&gt;
+</pre>
+<p><strong>Body:</strong></p>
+<pre>
+{
+  "title": "Updated Task Title",
+  "description": "Updated Description"
+}
+</pre>
+
+<hr>
+
+<h3>Delete Task by ID</h3>
+<p><strong>DELETE</strong> <code>http://localhost:8000/api/task/{id}</code></p>
+<p><strong>Headers:</strong></p>
+<pre>
+Accept: application/json
+Authorization: Bearer &lt;your token&gt;
+</pre>
+
+<hr>
+
+<h3>Update the Status of a Task by ID</h3>
+<p><strong>PATCH</strong> <code>http://localhost:8000/api/task/status/{id}</code></p>
+<p><strong>Headers:</strong></p>
+<pre>
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer &lt;your token&gt;
+</pre>
+<p><strong>Body:</strong></p>
+<pre>
+{
+  "status": "done"
+}
+</pre>
+
+<hr>
+
+<h3>Get Authenticated User</h3>
+<p><strong>GET</strong> <code>http://localhost:8000/api/user</code></p>
+<p><strong>Headers:</strong></p>
+<pre>
+Accept: application/json
+Authorization: Bearer &lt;your token&gt;
+</pre>
+
+</body>
+</html>

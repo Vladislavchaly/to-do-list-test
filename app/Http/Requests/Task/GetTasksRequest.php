@@ -22,11 +22,9 @@ class GetTasksRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => 'nullable|in:todo,done',
-            'priority_from' => 'nullable|integer',
-            'priority_to' => 'nullable|integer|gte:priority_from',
+            'status' => 'nullable|in:boolean',
             'title' => 'nullable|string',
-            'sort_by' => 'nullable|in:created_at,due_date,priority',
+            'sort_by' => 'nullable|in:created_at',
             'page' => 'nullable|integer',
             'limit' => 'nullable|integer',
         ];

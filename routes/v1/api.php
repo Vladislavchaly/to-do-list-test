@@ -26,8 +26,8 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 Route::group(['prefix' => 'task', 'middleware' => ['auth:api'], 'namespace' => 'Task'], function () {
     Route::get('/', 'GetTasksController')->name('task.get');
     Route::post('/', 'CreateTaskController')->name('task.create');
-    Route::get('{task}', 'GetTaskController')->name('task.get-by-id');
-    Route::put('{task}', 'UpdateTaskController')->name('task.update');
-    Route::patch('status/{task}', 'UpdateTaskStatusController')->name('task.update-status');
-    Route::delete('{task}', 'DeleteTaskController')->name('task.update');
+    Route::get('{task}', 'GetTaskController')->name('task.get-by-id')->middleware('can:view,task');
+    Route::put('{task}', 'UpdateTaskController')->name('task.update')->middleware('can:update,task');
+    Route::patch('status/{task}', 'UpdateTaskStatusController')->name('task.update-status')->middleware('can:update,task');
+    Route::delete('{task}', 'DeleteTaskController')->name('task.update')->middleware('can:delete,task');
 });
