@@ -10,7 +10,7 @@ use Illuminate\Http\JsonResponse;
 class LoginController extends Controller
 {
     /**
-     * @api {post} /api/auth/login User Login
+     * @api {post} /api/auth/login Login User
      * @apiName UserLogin
      * @apiGroup Authentication
      * @apiDescription This endpoint logs in the user and returns a token for API authentication.

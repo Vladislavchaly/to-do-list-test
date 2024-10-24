@@ -28,9 +28,7 @@ class GetTasksController extends Controller
      * @apiSuccess {Number} data.id ID of the task.
      * @apiSuccess {String} data.title Title of the task.
      * @apiSuccess {Boolean} data.status Status of the task (`true` for completed, `false` for incomplete).
-     * @apiSuccess {Number} data.priority Priority of the task.
      * @apiSuccess {String} data.created_at Date and time when the task was created.
-     * @apiSuccess {Object[]} data.sub_tasks Array of sub-tasks (if any).
      * @apiSuccess {Object} links Pagination links.
      * @apiSuccess {String} links.first URL to the first page.
      * @apiSuccess {String} links.last URL to the last page.
@@ -84,7 +82,12 @@ class GetTasksController extends Controller
     public function __invoke(GetTasksRequest $request, TaskRepository $taskRepository): JsonResponse
     {
         return response()->json(
-            $taskRepository->getAllParentByUserId($request->user()->id, $request->all(), $request->page, $request->limit)
+            $taskRepository->getAllParentByUserId(
+                $request->user()->id,
+                $request->all(),
+                $request->page,
+                $request->limit
+            )
         );
     }
 }

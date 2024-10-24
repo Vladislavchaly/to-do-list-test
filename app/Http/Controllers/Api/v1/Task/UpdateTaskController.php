@@ -20,18 +20,13 @@ class UpdateTaskController extends Controller
      * @apiHeader {String} Authorization Bearer Token.
      *
      * @apiParam {Number} id ID of the task to update.
-     * @apiParam {Number} [parentId] ID of the parent task (if any).
-     * @apiParam {Number} [priority] Priority of the task.
      * @apiParam {String} [title] Title of the task.
      * @apiParam {String} [description] Description of the task.
-     * @apiParam {String} [completedAt] Date and time when the task was completed (format: date-time).
      *
      * @apiSuccess {Number} id ID of the updated task.
      * @apiSuccess {String} title Title of the updated task.
      * @apiSuccess {String} status Status of the updated task.
-     * @apiSuccess {Number} priority Priority of the updated task.
      * @apiSuccess {String} created_at Date and time when the task was created.
-     * @apiSuccess {Object[]} sub_tasks Array of sub-tasks (if any).
      *
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
@@ -39,7 +34,6 @@ class UpdateTaskController extends Controller
      *       "id": 1,
      *       "title": "Updated Task Title",
      *       "status": "todo",
-     *       "priority": 3,
      *       "created_at": "2023-08-15T07:32:04.000000Z",
      *       "sub_tasks": []
      *     }

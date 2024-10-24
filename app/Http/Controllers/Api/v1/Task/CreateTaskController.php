@@ -18,27 +18,20 @@ class CreateTaskController extends Controller
      *
      * @apiHeader {String} Authorization Bearer Token.
      *
-     * @apiParam {Number} [parentId] ID of the parent task (optional).
-     * @apiParam {Number{1-5}} priority Priority of the task (minimum 1, maximum 5).
      * @apiParam {String} title Title of the task.
      * @apiParam {String} description Description of the task.
-     * @apiParam {String} [completedAt] Date and time when the task was completed (optional).
+     * @apiParam {String} [cratedAt] Date and time when the task was completed (optional).
      *
      * @apiParamExample {json} Request-Example:
      * {
-     *   "parentId": 1,
-     *   "priority": 2,
-     *   "title": "Test Title",
-     *   "description": "Test Description",
-     *   "completedAt": "2023-08-14 10:18:05"
+     *   "name": "Test Title",
+     *   "description": "Test Description"
      * }
      *
      * @apiSuccess {Number} id ID of the created task.
      * @apiSuccess {String} title Title of the task.
-     * @apiSuccess {String} status Status of the task ("todo", "in progress", etc.).
-     * @apiSuccess {Number} priority Priority of the task.
+     * @apiSuccess {String} status Status of the task (true or false).
      * @apiSuccess {String} created_at Date and time when the task was created.
-     * @apiSuccess {Object[]} sub_tasks Array of sub-tasks (if any).
      *
      * @apiSuccessExample {json} Success-Response:
      * HTTP/1.1 200 OK

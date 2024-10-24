@@ -23,20 +23,16 @@ class GetTaskController extends Controller
      *
      * @apiSuccess {Number} id The ID of the task.
      * @apiSuccess {String} title The title of the task.
-     * @apiSuccess {String} status The status of the task.
-     * @apiSuccess {Number} priority The priority of the task.
+     * @apiSuccess {Boolean} status The status of the task.
      * @apiSuccess {String} created_at The date and time when the task was created.
-     * @apiSuccess {Object[]} sub_tasks The array of sub-tasks (if any).
      *
      * @apiSuccessExample {json} Success-Response:
      * HTTP/1.1 200 OK
      * {
      *   "id": 1,
      *   "title": "Test Task",
-     *   "status": "todo",
-     *   "priority": 3,
+     *   "status": "true",
      *   "created_at": "2023-08-15T07:32:04.000000Z",
-     *   "sub_tasks": []
      * }
      *
      * @apiError (401 Unauthorized) {String} message Error message when the user is not authenticated.
