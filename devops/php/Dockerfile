@@ -13,6 +13,11 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y nodejs
+
+RUN npm install -g apidoc
+
 RUN curl -sS https://getcomposer.org/installer | php -- --version=2.2.24 --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www

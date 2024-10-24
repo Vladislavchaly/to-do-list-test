@@ -5,8 +5,8 @@ DC = docker-compose -p to-do-list-test
 
 APP_CONTAINER = laravel-app
 
-.PHONY: build
-build:
+.PHONY: start
+start:
 	@echo "Building the project..."
 	$(DC) build
 	@echo "Running Composer install..."
@@ -18,13 +18,13 @@ build:
 	@echo "Clearing cache..."
 	$(DC) run --rm $(APP_CONTAINER) php artisan cache:clear
 
-.PHONY: start
-start:
+.PHONY: up
+up:
 	@echo "Starting the project..."
 	$(DC) up -d
 
-.PHONY: stop
-stop:
+.PHONY: down
+down:
 	@echo "Stopping the project..."
 	$(DC) down
 
