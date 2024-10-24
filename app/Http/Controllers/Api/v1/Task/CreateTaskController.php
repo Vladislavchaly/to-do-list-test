@@ -18,7 +18,7 @@ class CreateTaskController extends Controller
      *
      * @apiHeader {String} Authorization Bearer Token.
      *
-     * @apiParam {String} title Title of the task.
+     * @apiParam {String} name Title of the task.
      * @apiParam {String} description Description of the task.
      * @apiParam {String} [cratedAt] Date and time when the task was completed (optional).
      *
@@ -29,7 +29,7 @@ class CreateTaskController extends Controller
      * }
      *
      * @apiSuccess {Number} id ID of the created task.
-     * @apiSuccess {String} title Title of the task.
+     * @apiSuccess {String} name Title of the task.
      * @apiSuccess {String} status Status of the task (true or false).
      * @apiSuccess {String} created_at Date and time when the task was created.
      *
@@ -37,11 +37,9 @@ class CreateTaskController extends Controller
      * HTTP/1.1 200 OK
      * {
      *   "id": 9,
-     *   "title": "Test Title",
-     *   "status": "todo",
-     *   "priority": 2,
-     *   "created_at": "2023-08-15T07:32:04.000000Z",
-     *   "sub_tasks": []
+     *   "name": "Test Title",
+     *   "status": false,
+     *   "created_at": "2023-08-15T07:32:04.000000Z"
      * }
      *
      * @apiError (401 Unauthorized) {String} message Error message when the user is not authenticated.
