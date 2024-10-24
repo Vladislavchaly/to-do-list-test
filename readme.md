@@ -139,7 +139,7 @@ Authorization: Bearer &lt;your token&gt;
 <p><strong>Body:</strong></p>
 <pre>
 {
-  "status": "done"
+  "status": true
 }
 </pre>
 
