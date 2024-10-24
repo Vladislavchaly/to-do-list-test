@@ -70,10 +70,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => 'api',
-            'namespace' => $this->namespace,
+            'namespace' => 'App\Http\Controllers\Api\v1',
             'prefix' => 'api',
         ], function ($router) {
-            require base_path('routes/api.php');
+            require base_path('routes/v1/api.php');
         });
     }
 }
