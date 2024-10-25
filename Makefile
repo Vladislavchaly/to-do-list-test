@@ -7,6 +7,10 @@ D = docker
 
 APP_CONTAINER = laravel-app
 
+.PHONY: env
+env:
+	cp .env.example .env
+
 .PHONY: start
 start:
 	@echo "Building the project..."
@@ -19,6 +23,8 @@ start:
 	$(D) exec $(APP_CONTAINER) php artisan migrate
 	@echo "Clearing cache..."
 	$(D) exec $(APP_CONTAINER) php artisan cache:clear
+	@echo "Generate App key..."
+	$(D) exec $(APP_CONTAINER) php artisan key:generate
 
 .PHONY: sh
 sh:
