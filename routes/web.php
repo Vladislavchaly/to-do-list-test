@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('login', 'Auth\LoginController')->name('user.login');
+Route::get('register', 'Auth\RegisterController')->name('user.register');
+Route::get('/dashboard', 'Task\DashboardController')->name('user.dashboard');

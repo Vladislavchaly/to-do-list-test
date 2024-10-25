@@ -1,4 +1,11 @@
+<h1>Deploy project: </h1>
 
+To deploy project locally, run terminal command: 
+<pre>
+make start
+</pre>
+
+Please check Makefile for other command.
 
 <h1>API Documentation</h1>
 

@@ -18,11 +18,9 @@ interface TaskRepository
 
     public function getByIdAndUserId(int $id, int $userId): Task;
 
-    public function getAllByUserId(int $userId, array $filters, int $page, int $limit): LengthAwarePaginator;
-
-    public function getAllParentByUserId(int $userId, array $filters, int $page = 1, int $limit = 15): LengthAwarePaginator;
+    public function getAllByUserId(int $userId, array $filters, ?int $page, ?int $limit): LengthAwarePaginator;
 
     public function getById(int $id): Task;
 
-    public function updateStatus(int $id, string $status): Task;
+    public function updateStatus(int $id, bool $status): Task;
 }

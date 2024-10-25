@@ -1,0 +1,13 @@
+$(document).ready(async function(){let t=$("#tasks"),a=$("#task-form"),s=$("#task-modal"),e=$("#task-modal-title"),i=$("#logout-button");async function n(){try{let a=await window.ApiService.get("/task?sort_by=status"),s=a.data;t.empty(),s.forEach(a=>{t.append(`
+                    <li class="list-group-item">
+                        <strong>${a.name}</strong>
+                        <span>${a.description}</span>
+                        <div class="btn-group float-right">
+                            <button class="btn btn-sm btn-warning edit-task" data-id="${a.id}">Edit</button>
+                            <button class="btn btn-sm btn-danger delete-task" data-id="${a.id}">Delete</button>
+                            <button class="btn btn-sm ${a.status?"btn-success":"btn-secondary"} update-status" data-id="${a.id}" data-status="${!a.completed}">
+                                ${a.status?"Mark Incomplete":"Mark Complete"}
+                            </button>
+                        </div>
+                    </li>
+                `)})}catch(e){alert("Failed to load tasks: "+e.message)}}i.on("click",function(){window.ApiService.delete("/auth/logout").then(()=>{alert("Logged out successfully."),localStorage.removeItem("access_token"),window.location.href="/login"}).catch(t=>{alert("Logout failed. Please try again.")})}),$("#add-task-btn").click(()=>{e.text("Create Task"),a[0].reset(),$("#task-id").val(""),s.modal("show")}),t.on("click",".edit-task",async function(){let t=$(this).data("id");try{let a=await window.ApiService.get(`/task/${t}`);$("#task-id").val(a.id),$("#task-name").val(a.name),$("#task-desc").val(a.description),e.text("Edit Task"),s.modal("show")}catch(i){alert("Failed to load task: "+i.message)}}),t.on("click",".delete-task",async function(){let t=$(this).data("id");if(confirm("Are you sure you want to delete this task?"))try{await window.ApiService.delete(`/task/${t}`),n()}catch(a){alert("Failed to delete task: "+a.message)}}),t.on("click",".update-status",async function(){let t=$(this).data("id"),a=$(this).data("status");try{await window.ApiService.patch(`/task/status/${t}`,{status:a}),n()}catch(s){alert("Failed to update task status: "+s.message)}}),a.submit(async function(t){t.preventDefault();let a=$("#task-id").val(),e={name:$("#task-name").val(),description:$("#task-desc").val()};try{a?await window.ApiService.put(`/task/${a}`,e):await window.ApiService.post("/task",e),s.modal("hide"),n()}catch(i){alert("Failed to save task: "+i.message)}}),n()});

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'user', 'namespace' => 'User', 'middleware' => 'auth:api'], function () {
+Route::group(['prefix' => 'user', 'namespace' => 'User', 'middleware' => ['auth:api', 'auth']], function () {
     Route::get('/', 'GetController')->name('user.get');
 });
 
