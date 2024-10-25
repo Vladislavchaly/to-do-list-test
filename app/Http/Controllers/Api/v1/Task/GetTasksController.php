@@ -82,7 +82,7 @@ class GetTasksController extends Controller
     public function __invoke(GetTasksRequest $request, TaskRepository $taskRepository): JsonResponse
     {
         return response()->json(
-            $taskRepository->getAllParentByUserId(
+            $taskRepository->getAllByUserId(
                 $request->user()->id,
                 $request->all(),
                 $request->page,

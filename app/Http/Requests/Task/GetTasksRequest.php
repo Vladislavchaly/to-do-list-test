@@ -23,8 +23,8 @@ class GetTasksRequest extends FormRequest
     {
         return [
             'status' => 'nullable|in:boolean',
-            'title' => 'nullable|string',
-            'sort_by' => 'nullable|in:created_at',
+            'name' => 'nullable|string',
+            'sort_by' => 'nullable|in:created_at,status',
             'page' => 'nullable|integer',
             'limit' => 'nullable|integer',
         ];

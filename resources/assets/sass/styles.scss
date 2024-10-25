@@ -1,0 +1,107 @@
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+body {
+  background-color: #f8f9fa;
+}
+
+.container {
+  margin-top: 20px;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    text-align: center;
+  }
+
+  h3 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+  }
+
+  #add-task-btn,
+  #logout-button {
+    width: 100%;
+    max-width: 200px;
+    margin: 10px auto;
+  }
+
+  #task-list {
+    margin-top: 20px;
+
+    #tasks {
+      margin-bottom: 20px;
+
+      .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+
+        strong {
+          flex: 1;
+        }
+
+        .btn-group {
+          margin-left: 10px;
+
+          .btn {
+            min-width: 70px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h5 {
+      margin: 0;
+    }
+  }
+
+  .modal-body {
+    form {
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  #add-task-btn,
+  #logout-button {
+    width: auto;
+    margin: 10px;
+  }
+
+  #task-list {
+    #tasks {
+      .list-group-item {
+        flex-direction: row;
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  h2 {
+    font-size: 2.5em;
+  }
+
+  h3 {
+    font-size: 2em;
+  }
+}
