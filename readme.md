@@ -2,6 +2,7 @@
 
 To deploy project locally, run terminal command: 
 <pre>
+make env
 make start
 </pre>
 
