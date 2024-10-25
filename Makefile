@@ -25,6 +25,11 @@ start:
 	$(D) exec $(APP_CONTAINER) php artisan cache:clear
 	@echo "Generate App key..."
 	$(D) exec $(APP_CONTAINER) php artisan key:generate
+	$(D) exec $(APP_CONTAINER) php artisan passport:install
+	$(D) exec $(APP_CONTAINER) chmod 600 storage/oauth-private.key
+	$(D) exec $(APP_CONTAINER) chmod 600 storage/oauth-public.key
+	$(D) exec $(APP_CONTAINER) chown www-data:www-data storage/oauth-private.key
+	$(D) exec $(APP_CONTAINER) chown www-data:www-data storage/oauth-public.key
 
 .PHONY: sh
 sh:
@@ -44,10 +49,20 @@ up:
 rebuild:
 	@echo "Rebuilding the project..."
 	$(DC) down
-	$(DC) up --build -d
+	@echo "Building the project..."
+	$(DC) build
+	@echo "Starting the project"
+	$(DC) up -d
 	@echo "Running Composer install..."
 	$(D) exec $(APP_CONTAINER) composer install
 	@echo "Running migrations..."
 	$(D) exec $(APP_CONTAINER) php artisan migrate
 	@echo "Clearing cache..."
 	$(D) exec $(APP_CONTAINER) php artisan cache:clear
+	@echo "Generate App key..."
+	$(D) exec $(APP_CONTAINER) php artisan key:generate
+	$(D) exec $(APP_CONTAINER) php artisan passport:install
+	$(D) exec $(APP_CONTAINER) chmod 600 storage/oauth-private.key
+	$(D) exec $(APP_CONTAINER) chmod 600 storage/oauth-public.key
+	$(D) exec $(APP_CONTAINER) chown www-data:www-data storage/oauth-private.key
+	$(D) exec $(APP_CONTAINER) chown www-data:www-data storage/oauth-public.key
